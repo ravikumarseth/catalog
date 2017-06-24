@@ -36,7 +36,7 @@ class Game(Base):
     genre = Column(String(30), ForeignKey('gamegenre.name'))
     gamegenre = relationship(GameGenre)
     user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship(User)
+    user = relationship(User, backref=backref("game", cascade="all, delete-orphan"))
 
     @property
     def serialize(self):
