@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> {{game.name}} </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}" type="text/css" />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script>
+    $(function() {
+      $(".flash li").fadeOut(2500);
+    });
+  </script>
+</head>
+
+<body>
+  {% include "header.html" %}
+  <main>
+    <h1>{{game.name}}</h1>
+    <p>
+      {{game.description}}
+    </p>
+  </main>
+</body>
+
+</html>

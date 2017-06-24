@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Delete Item </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}" type="text/css"/>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script>
+        $(function() {
+            $(".flash li").fadeOut(2500);
+        });
+        </script>
+    </head>
+    <body>
+      {% include "header.html" %}
+        <form action="#" method="POST">
+            <h2> Are you sure you want to delete {{ game.name }} ?</h2>
+
+            <div>
+                <a href="{{url_for('showAllCategories')}}" class="cancel">Cancel</a>
+                <input type="submit" value="Delete" class="delete">
+            </div>
+        </form>
+    </body>
+</html>

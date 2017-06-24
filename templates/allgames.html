@@ -1,0 +1,15 @@
+{% extends "main.html" %}
+{% block content %}
+{% if not genre %}
+  <h2> Latest Additions </h2>
+{% else %}
+  <h2> {{ genre }} </h2>
+{% endif %}
+{% for game in games%}
+  <p>
+    <a href="{{url_for('showItemDetails', category=game.genre, item=game.id)}}">{{ game.name }}</a>
+    {% if 'username' in session and session['user_id'] == game.user_id %}
+      <a href="{{url_for('editItem', item=game.id)}}"> (Edit </a> | <a href="{{url_for('deleteItem', item=game.id)}}"> Delete) </a>
+    {% endif %}
+  </p>
+{% endfor %} {% endblock %}

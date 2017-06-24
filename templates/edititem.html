@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> Edit Item </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}" type="text/css" />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script>
+    $(function() {
+      $(".flash li").fadeOut(2500);
+    });
+  </script>
+</head>
+
+<body>
+  {% include "header.html" %}
+  <form action="#" method="POST">
+    <label> Name<span>*</span>: <input name="name" value="{{game.name}}" id="name">
+      {% if gamename %}
+        </br>
+        <p>
+          <span>Game Name Required*</span>
+        </p>
+      {% endif %}
+    </label>
+    <label> Description<span>*</span>:
+      <textarea name="description" id="desc">{{game.description}}</textarea>
+      {% if gamedescription %}
+        </br>
+        <p>
+          <span>Game Description Required*</span>
+        </p>
+      {% endif %}
+    </label>
+    <select name="genre">
+                {% with g = game.genre %}
+                <option value="Arcade" {% if g=="Arcade" %}selected{% endif %}>Arcade</option>
+                <option value="Shooter" {% if g=="Shooter" %}selected{% endif %}>Shooter</option>
+                <option value="Strategy" {% if g=="Strategy" %}selected{% endif %}>Strategy</option>
+                <option value="Musical" {% if g=="Musical" %}selected{% endif %}>Musical</option>
+                <option value="Simulation" {% if g=="Simulation" %}selected{% endif %}>Simulation</option>
+                <option value="Puzzle" {% if g=="Puzzle" %}selected{% endif %}>Puzzle</option>
+                <option value="Party" {% if g=="Party" %}selected{% endif %}>Party</option>
+                <option value="Platform" {% if g=="Platform" %}selected{% endif %}>Platform</option>
+                <option value="Fighting" {% if g=="Fighting" %}selected{% endif %}>Fighting</option>
+                <option value="Racing" {% if g=="Racing" %}selected{% endif %}>Racing</option>
+                <option value="Role-Playing" {% if g=="Role-Playing" %}selected{% endif %}>Role-playing</option>
+                <option value="Sports" {% if g=="Sports" %}selected{% endif %}>Sports</option>
+                <option value="Survival/Horror" {% if g=="Survival/Horror" %}selected{% endif %}>Survival/Horror</option>
+                <option value="Stealth" {% if g=="Stealth" %}selected{% endif %}>Stealth</option>
+                {% endwith %}
+            </select>
+    <div>
+      <a href="{{url_for('showAllCategories')}}" class="cancel">Cancel</a>
+      <input type="submit" value="Edit" class="edit">
+    </div>
+
+  </form>
+</body>
+
+</html>

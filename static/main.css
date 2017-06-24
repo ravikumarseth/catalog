@@ -1,0 +1,116 @@
+html {
+  background-color: orange;
+}
+
+body {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 0 auto;
+  justify-content: space-around;
+}
+
+body>a {
+  width: 100%;
+  margin-top: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  min-height: 100px;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 1;
+  box-shadow: 0 1px 1px #000;
+  will-change: transform;
+  background-color: darkgoldenrod;
+}
+
+nav img {
+  height: 75px;
+  width: 75px;
+  margin: 10px;
+  border: 2px solid #269abc;
+  border-radius: 50%;
+}
+
+nav span {
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+nav a, .add, .edit, .delete, .cancel {
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+  background-color: #31b0d5;
+  border-color: #269abc;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.3333;
+  border-radius: 16px;
+  border: 1px solid transparent;
+}
+
+.flash {
+  width: 100%;
+  margin-top: 100px;
+}
+
+.flash ul {
+  list-style: none;
+}
+
+.flash li {
+  text-align: center;
+}
+
+main, aside {
+  width: 50%;
+  text-align: center;
+}
+
+main a, aside a {
+  color: maroon;
+}
+
+aside {
+  overflow: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  min-height: 50vmax;
+  justify-content: space-around;
+}
+
+textarea {
+  vertical-align: middle;
+  width: 300px;
+  height: 200px;
+}
+
+select {
+  width: 120px;
+  padding: 5px 8px;
+}
+
+input[type="text"] {
+  width: 250px;
+  height: 30px;
+}
+
+label span {
+  color: red;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> Add Item </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}" type="text/css" />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script>
+    $(function() {
+      $(".flash li").fadeOut(2500);
+    });
+  </script>
+</head>
+
+<body>
+  {% include "header.html" %}
+  <form action="{{url_for('addItem')}}" method="POST">
+    <label> Name<span>*</span>:
+      <input name="name" type="text" value={{name}}>
+      {% if gamename %}
+        </br>
+        <p>
+          <span>Game Name Required*</span>
+        </p>
+      {% endif %}
+    </label>
+    <label> Description<span>*</span>:
+      <textarea name="description">{{description}}</textarea>
+      {% if gamedescription %}
+        </br>
+        <p>
+          <span>Game Description Required*</span>
+        </p>
+      {% endif %}
+    </label>
+    <select name="genre">
+                <option value="Arcade">Arcade</option>
+                <option value="Shooter">Shooter</option>
+                <option value="Strategy">Strategy</option>
+                <option value="Musical">Musical</option>
+                <option value="Simulation">Simulation</option>
+                <option value="Puzzle">Puzzle</option>
+                <option value="Party">Party</option>
+                <option value="Platform">Platform</option>
+                <option value="Fighting">Fighting</option>
+                <option value="Racing">Racing</option>
+                <option value="Role-Playing">Role-playing</option>
+                <option value="Sports">Sports</option>
+                <option value="Survival_Horror">Survival/Horror</option>
+                <option value="Stealth">Stealth</option>
+            </select>
+    <div>
+      <a href="{{url_for('showAllCategories')}}" class="cancel">Cancel</a>
+      <input type="submit" value="Add" class="add">
+    </div>
+
+  </form>
+</body>
+
+</html>

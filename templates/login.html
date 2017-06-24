@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}" type="text/css" />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="//apis.google.com/js/platform.js?onload=start">
+  </script>
+  <style>
+    html {
+      height: 100%;
+      width: 100%;
+    }
+
+    body {
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    h2 {
+      width: 100%;
+    }
+  </style>
+</head>
+
+
+<body>
+  <h2> SignIn With Google </h2>
+  <div id="signInButton">
+    <span class="g-signin" data-scope="openid email" data-clientid="96412281112-g75a7f7lngstda6jnuuepcp1d6s7mjmm.apps.googleusercontent.com" data-redirecturi="postmessage" data-accesstype="offline" data-cookiepolicy="single_host_origin" data-callback="signInCallback"
+      data-approvalprompt="force"></span>
+  </div>
+
+  <div id="result"></div>
+  <script>
+    function signInCallback(authResult) {
+      if (authResult['code']) {
+        // Hide the sign-in button now that the user is authorized
+        $('#signInButton').attr('style', 'display: none');
+        $('h2').attr('style', 'display: none');
+        // Send the one-time-use code to the server, if the server responds, write a 'login successful' message to the web page and then redirect back to the main restaurants page
+        $.ajax({
+          type: 'POST',
+          url: '/gconnect?state={{STATE}}',
+          processData: false,
+          data: authResult['code'],
+          contentType: 'application/octet-stream; charset=utf-8',
+          success: function(result) {
+            // Handle or verify the server response if necessary.
+            if (result) {
+              $('#result').html('Login Successful!</br>' + result + '</br>Redirecting...</br><a href="{{url_for('
+                showAllCategories ')}}">Redirect Now...</a>')
+              setTimeout(function() {
+                window.location.href = "/";
+              }, 2500);
+            } else if (authResult['error']) {
+              console.log('There was an error: ' + authResult['error']);
+            } else {
+              $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+            }
+          }
+        });
+      }
+    }
+  </script>
+</body>
+
+</html>
