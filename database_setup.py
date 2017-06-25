@@ -8,9 +8,9 @@ from sqlalchemy import create_engine
 Base = declarative_base()
 
 
-class User(Base):
+class Users(Base):
 
-    __tablename__ = 'user'
+    __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
     email = Column(String(250), nullable=False)
@@ -35,8 +35,8 @@ class Game(Base):
     time = Column(DateTime, default=func.now())
     genre = Column(String(30), ForeignKey('gamegenre.name'))
     gamegenre = relationship(GameGenre)
-    user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship(User, backref=backref("game", cascade="all, delete-orphan"))
+    user_id = Column(Integer, ForeignKey('users.id'))
+    user = relationship(Users, backref=backref("game", cascade="all, delete-orphan"))
 
     @property
     def serialize(self):

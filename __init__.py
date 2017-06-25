@@ -4,7 +4,7 @@
 from flask import Flask, render_template, request, redirect, jsonify, url_for, flash
 from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, GameGenre, Game, User
+from database_setup import Base, GameGenre, Game, Users
 from flask import session as login_session
 import random
 import string
@@ -155,18 +155,18 @@ def createUser(login_session):
                    picture=login_session['picture'])
     session.add(newUser)
     session.commit()
-    user = session.query(User).filter_by(email=login_session['email']).one()
+    user = session.query(Users).filter_by(email=login_session['email']).one()
     return user.id
 
 
 def getUserInfo(user_id):
-    user = session.query(User).filter_by(id=user_id).one()
+    user = session.query(Users).filter_by(id=user_id).one()
     return user
 
 
 def getUserID(email):
     try:
-        user = session.query(User).filter_by(email=email).one()
+        user = session.query(Users).filter_by(email=email).one()
         return user.id
     except:
         return None
