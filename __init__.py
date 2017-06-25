@@ -14,10 +14,13 @@ import httplib2
 import json
 from flask import make_response
 import requests
+import os
 
+
+path = os.path.dirname(__file__)
 app = Flask(__name__)
 
-CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']
+CLIENT_ID = json.loads(open(path+'/client_secrets.json', 'r').read())['web']['client_id']
 
 engine = create_engine('sqlite:///games.db')
 Base.metadata.bind = engine
